@@ -1,0 +1,4 @@
+body { font-family: Arial, sans-serif; margin: 2rem; }
+.ok { color: #0a7a0a; }
+.errors { color: #b00020; }
+label { display: block; margin: 0.5rem 0; }

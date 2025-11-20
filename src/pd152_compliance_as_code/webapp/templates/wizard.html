@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Wizard</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+  <h1>Мастер ввода</h1>
+  {% if success %}
+    <div class="ok">Черновик сохранён в памяти. Можете перейти к экспорту.</div>
+  {% endif %}
+  {% if errors %}
+    <div class="errors">
+      <p>Ошибки:</p>
+      <ul>
+        {% for err in errors %}
+          <li>{{ err }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+  <form method="post">
+    <label>Оператор: <input name="operator_name" required /></label><br />
+    <label>Email: <input name="operator_email" /></label><br />
+    <label>Субъекты (id через запятую): <input name="subjects" required /></label><br />
+    <label>Категории ПДн (id через запятую): <input name="categories" required /></label><br />
+    <label>Процессы (id через запятую): <input name="processes" required /></label><br />
+    <button type="submit">Сохранить черновик</button>
+  </form>
+  <p><a href="/export">Экспортировать текущее состояние</a></p>
+</body>
+</html>

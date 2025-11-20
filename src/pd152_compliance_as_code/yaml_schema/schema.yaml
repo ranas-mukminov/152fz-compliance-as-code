@@ -1,0 +1,130 @@
+$id: "https://run-as-daemon.ru/schemas/pd152-compliance-as-code.schema.json"
+title: "152-FZ compliance as code"
+type: object
+required:
+  - operator
+  - data_subjects
+  - personal_data_categories
+  - processing_activities
+additionalProperties: false
+properties:
+  operator:
+    type: object
+    required: [name]
+    properties:
+      name: {type: string}
+      inn: {type: string}
+      ogrn: {type: string}
+      contacts:
+        type: object
+        properties:
+          address: {type: string}
+          email: {type: string}
+          phone: {type: string}
+          website: {type: string}
+        additionalProperties: false
+    additionalProperties: false
+  processors:
+    type: array
+    items:
+      type: object
+      required: [name]
+      properties:
+        name: {type: string}
+        role: {type: string}
+        contacts:
+          type: object
+          properties:
+            address: {type: string}
+            email: {type: string}
+            phone: {type: string}
+            website: {type: string}
+          additionalProperties: false
+      additionalProperties: false
+  data_subjects:
+    type: array
+    minItems: 1
+    items:
+      type: object
+      required: [id, name]
+      properties:
+        id: {type: string}
+        name: {type: string}
+        description: {type: string}
+      additionalProperties: false
+  personal_data_categories:
+    type: array
+    minItems: 1
+    items:
+      type: object
+      required: [id, name, fields]
+      properties:
+        id: {type: string}
+        name: {type: string}
+        fields:
+          type: array
+          items: {type: string}
+        sensitivity:
+          type: string
+          enum: [standard, special, biometric]
+      additionalProperties: false
+  processing_activities:
+    type: array
+    minItems: 1
+    items:
+      type: object
+      required:
+        - id
+        - name
+        - subjects
+        - data_categories
+        - purposes
+        - legal_basis
+        - operations
+        - retention
+      properties:
+        id: {type: string}
+        name: {type: string}
+        subjects:
+          type: array
+          items: {type: string}
+        data_categories:
+          type: array
+          items: {type: string}
+        purposes:
+          type: array
+          items: {type: string}
+        legal_basis:
+          type: array
+          items: {type: string}
+        operations:
+          type: array
+          items: {type: string}
+        storage_locations:
+          type: array
+          items: {type: string}
+        recipients:
+          type: array
+          items: {type: string}
+        retention:
+          type: object
+          required: [description]
+          properties:
+            description: {type: string}
+            period: {type: string}
+          additionalProperties: false
+        security_measures:
+          type: object
+          properties:
+            org:
+              type: array
+              items: {type: string}
+            tech:
+              type: array
+              items: {type: string}
+            legal:
+              type: array
+              items: {type: string}
+          additionalProperties: false
+        notes: {type: string}
+      additionalProperties: false

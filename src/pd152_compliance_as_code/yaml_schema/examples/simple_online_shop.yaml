@@ -1,0 +1,37 @@
+operator:
+  name: "ООО «Пример-Маркет»"
+  inn: "1234567890"
+  contacts:
+    address: "г. Москва, ул. Примерная, 1"
+    email: "privacy@example.ru"
+
+data_subjects:
+  - id: customers
+    name: "Покупатели интернет-магазина"
+
+personal_data_categories:
+  - id: contact_data
+    name: "Контактные данные"
+    fields: ["ФИО", "телефон", "email"]
+
+processing_activities:
+  - id: order_processing
+    name: "Оформление и исполнение заказов"
+    subjects: ["customers"]
+    data_categories: ["contact_data"]
+    purposes: ["исполнение договора купли-продажи"]
+    legal_basis: ["договор"]
+    storage_locations:
+      - "сервер в РФ (дата-центр ...)"
+    retention:
+      description: "5 лет для бухгалтерского учёта и претензионной работы"
+    recipients:
+      - "курьерская служба"
+    operations:
+      - "сбор"
+      - "запись"
+      - "хранение"
+      - "передача"
+    security_measures:
+      org: ["ограничение доступа по ролям", "обучение сотрудников"]
+      tech: ["шифрование на диске", "резервное копирование", "журналирование доступа"]

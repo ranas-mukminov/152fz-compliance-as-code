@@ -1,0 +1,45 @@
+operator:
+  name: "АНО «Пример-Школа»"
+  inn: "1029384756"
+  contacts:
+    address: "г. Казань, ул. Учебная, 5"
+    email: "privacy@school.example.ru"
+
+processors:
+  - name: "Облачный CRM провайдер"
+    role: "хранение данных учеников и расписания"
+
+data_subjects:
+  - id: students
+    name: "Ученики"
+  - id: parents
+    name: "Родители/законные представители"
+  - id: teachers
+    name: "Преподаватели"
+
+personal_data_categories:
+  - id: contact_data
+    name: "Контактные данные"
+    fields: ["ФИО", "телефон", "email"]
+  - id: progress
+    name: "Успеваемость"
+    fields: ["оценки", "отчёты учителей"]
+  - id: schedule
+    name: "Расписание и посещаемость"
+    fields: ["расписание", "посещаемость"]
+
+processing_activities:
+  - id: education_process
+    name: "Организация учебного процесса"
+    subjects: ["students", "teachers", "parents"]
+    data_categories: ["contact_data", "progress", "schedule"]
+    purposes: ["рассылка расписания", "учёт успеваемости", "коммуникация с родителями"]
+    legal_basis: ["договор", "согласие"]
+    storage_locations: ["облако CRM в РФ"]
+    retention:
+      description: "до окончания обучения + архивные сроки для отчётности"
+    recipients: ["родители", "образовательные партнёры"]
+    operations: ["сбор", "запись", "хранение", "передача", "удаление"]
+    security_measures:
+      org: ["доступ по ролям в CRM", "регулярный пересмотр прав"]
+      tech: ["двухфакторная аутентификация", "журналирование доступа", "резервное копирование"]

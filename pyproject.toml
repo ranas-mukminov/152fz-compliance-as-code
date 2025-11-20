@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pd152-compliance-as-code"
+version = "0.1.0"
+description = "152-FZ compliance as code: YAML DSL, generators, risk scoring, CLI and web UI"
+authors = [{ name = "run-as-daemon", email = "hello@run-as-daemon.ru" }]
+license = { file = "LICENSE" }
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "PyYAML>=6.0",
+    "jsonschema>=4.19.0",
+    "python-docx>=1.0.0",
+    "typer[all]>=0.9.0",
+    "fastapi>=0.109.0",
+    "jinja2>=3.1.2",
+    "uvicorn>=0.24.0",
+    "rich>=13.0.0"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+    "pytest-cov>=4.1",
+    "mypy>=1.8",
+    "ruff>=0.1.5",
+    "bandit>=1.7.5",
+    "pip-audit>=2.6.1",
+    "yamllint>=1.33.0",
+    "types-PyYAML",
+    "types-jsonschema"
+]
+
+[project.scripts]
+pd152 = "pd152_compliance_as_code.cli.main:app"
+
+[tool.ruff]
+line-length = 100
+
+[tool.mypy]
+python_version = "3.10"
+ignore_missing_imports = true
+strict_optional = false
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]

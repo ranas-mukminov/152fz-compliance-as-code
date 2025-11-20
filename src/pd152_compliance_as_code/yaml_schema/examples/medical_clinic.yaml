@@ -1,0 +1,58 @@
+operator:
+  name: "ООО «Пример-Клиника»"
+  inn: "9876543210"
+  contacts:
+    address: "г. Санкт-Петербург, Набережная канала, 10"
+    email: "dpo@clinic.example.ru"
+
+processors:
+  - name: "Облачная ЛПУ-ИС"
+    role: "хранение электронных медкарт"
+
+data_subjects:
+  - id: patients
+    name: "Пациенты"
+  - id: staff
+    name: "Медицинский персонал"
+
+personal_data_categories:
+  - id: contact_data
+    name: "Контактные данные"
+    fields: ["ФИО", "телефон", "email"]
+  - id: health_data
+    name: "Данные о здоровье"
+    fields: ["анамнез", "диагноз", "назначения"]
+    sensitivity: "special"
+  - id: staff_hr
+    name: "Кадровые данные сотрудников"
+    fields: ["трудовой договор", "график работы", "страхование"]
+
+processing_activities:
+  - id: medical_care
+    name: "Оказание медицинских услуг"
+    subjects: ["patients"]
+    data_categories: ["contact_data", "health_data"]
+    purposes: ["оказание медицинской помощи", "ведение медицинской документации"]
+    legal_basis: ["закон", "договор"]
+    storage_locations: ["сервер в РФ клиники", "облачный дата-центр в РФ"]
+    retention:
+      description: "сроки по локальным актам и требованиям к меддокументации"
+    recipients: ["страховые компании"]
+    operations: ["сбор", "запись", "хранение", "использование", "передача"]
+    security_measures:
+      org: ["медицинская тайна", "распределение доступа по ролям"]
+      tech: ["журналирование доступа", "шифрование дисков", "резервное копирование"]
+  - id: hr_staff
+    name: "Кадровый учёт персонала"
+    subjects: ["staff"]
+    data_categories: ["staff_hr", "contact_data"]
+    purposes: ["исполнение трудового законодательства", "ведение кадрового учёта"]
+    legal_basis: ["закон", "договор"]
+    storage_locations: ["локальный файловый сервер"]
+    retention:
+      description: "сроки хранения кадровых данных по локальному расписанию архивов"
+    recipients: ["налоговые органы", "фонды"]
+    operations: ["сбор", "запись", "хранение", "передача"]
+    security_measures:
+      org: ["регламент доступа на кадровые папки"]
+      tech: ["резервное копирование", "антивирусная защита"]
